@@ -1,16 +1,18 @@
-# Base image with necessary tools
-FROM ubuntu:22.04
+FROM python:3.11 
+ # Example: Use a specific Python version
 
-# Install build utilities (example using GCC and Make)
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    make \
-    git
+# Set the working directory in the container
+WORKDIR /app
 
-# Copy your source code
-WORKDIR /src
-COPY . .
+# Copy Python files to the container
+COPY . /app
 
-# Build and compile your application
-RUN gcc src/1.c
-CMD ./a.out
+
+# Define the command to run when starting the container
+CMD ["python", "./app/test.py", ">>", "file.txt", "cat", "file.txt"]
+
+#python ./app/test.py >> file.txt  
+# Replace with your script's name
+
+
+
